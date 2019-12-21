@@ -15,14 +15,14 @@ public class Server {
             while (true) {
                 Socket socket = serverSocket.accept();
                 new ClientHandler(socket, "Client #" + i).start();
-                if (!clientConnected){
-                    MessageSender messageSender = new MessageSender(socket);
-                    Thread threadMessageSender  = new Thread(messageSender);
-                    threadMessageSender.start();
-                }
-                clientConnected = true;
                 System.out.println("New client accepted. Name set to: Client #" + i);
                 i++;
+                if (!clientConnected) {
+                    MessageSender messageSender = new MessageSender(socket);
+                    Thread threadMessageSender = new Thread(messageSender);
+                    threadMessageSender.start();
+                    clientConnected = true;
+                }
             }
         } catch (IOException e) {
             System.out.println("Server exception " + e.getMessage());

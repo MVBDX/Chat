@@ -10,7 +10,7 @@ public class MessageSender extends Thread {
     public static Socket lastMessageClientSocket;
 
     public MessageSender(Socket socket) {
-        this.lastMessageClientSocket = socket;
+        lastMessageClientSocket = socket;
     }
 
     @Override
