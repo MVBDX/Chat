@@ -2,15 +2,27 @@ package ir.mctab.hw7.chat;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
 
 public class Server {
 
     public static void main(String[] args) {
+        boolean clientConnected = false;
+        int i = 1;
         try (ServerSocket serverSocket = new ServerSocket(5000)) {
             System.out.println("Waiting for a client...");
+
             while (true) {
-                new Echoer(serverSocket.accept()).start();
-                System.out.println("New client accepted");
+                Socket socket = serverSocket.accept();
+                new ClientHandler(socket, "Client #" + i).start();
+                if (!clientConnected){
+                    MessageSender messageSender = new MessageSender(socket);
+                    Thread threadMessageSender  = new Thread(messageSender);
+                    threadMessageSender.start();
+                }
+                clientConnected = true;
+                System.out.println("New client accepted. Name set to: Client #" + i);
+                i++;
             }
         } catch (IOException e) {
             System.out.println("Server exception " + e.getMessage());
