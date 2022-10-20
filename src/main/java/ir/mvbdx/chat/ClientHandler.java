@@ -61,7 +61,8 @@ public class ClientHandler extends Thread {
                             System.out.println(clientName + ": " + msg);
                             MessageSender.lastMessageClientSocket = this.socket;
                         } catch (IOException e) {
-                            e.printStackTrace();
+                            System.out.println("Client disconnected!");
+                            exit = true;
                         }
                     }
                 });

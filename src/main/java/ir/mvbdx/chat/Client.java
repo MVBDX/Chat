@@ -52,6 +52,12 @@ public class Client {
                     System.out.println(finalEchoes.readLine());
                 } catch (IOException e) {
                     e.printStackTrace();
+                    try {
+                        finalEchoes.close();
+                        exit = true;
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
             }
         });
