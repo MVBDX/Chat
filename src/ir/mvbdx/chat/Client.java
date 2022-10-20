@@ -1,4 +1,4 @@
-package ir.mctab.hw7.chat;
+package ir.mvbdx.chat;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -49,8 +49,7 @@ public class Client {
         Thread readMessage = new Thread(() -> {
             while (!exit) {
                 try {
-                    String msg = finalEchoes.readLine();
-                    System.out.println(msg);
+                    System.out.println(finalEchoes.readLine());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -58,9 +57,8 @@ public class Client {
         });
         readMessage.start();
 
-        String echoString;
         do {
-            echoString = scanner.nextLine();
+            String echoString = scanner.nextLine();
             stringToEcho.println(echoString);
             if (echoString.equals("exit")) exit = true;
         } while (!exit);

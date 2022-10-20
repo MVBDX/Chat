@@ -1,4 +1,4 @@
-package ir.mctab.hw7.chat;
+package ir.mvbdx.chat;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -11,7 +11,6 @@ public class Server {
         int i = 1;
         try (ServerSocket serverSocket = new ServerSocket(5000)) {
             System.out.println("Waiting for a client...");
-
             while (true) {
                 Socket socket = serverSocket.accept();
                 new ClientHandler(socket, "Client #" + i).start();

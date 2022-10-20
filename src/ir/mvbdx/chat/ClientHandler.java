@@ -1,4 +1,4 @@
-package ir.mctab.hw7.chat;
+package ir.mvbdx.chat;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -10,8 +10,8 @@ import java.util.List;
 
 public class ClientHandler extends Thread {
     private boolean exit;
-    private Socket socket;
-    private String clientName;
+    private final Socket socket;
+    private final String clientName;
     private boolean loginSuccess;
 
     List<UserAccount> userAccounts = new ArrayList<>() {{
@@ -47,7 +47,7 @@ public class ClientHandler extends Thread {
                 System.out.println("Client entered wrong user or pass. connection closed.");
             } else {
                 output.println("Success!");
-                System.out.println("Client logined successfuly!");
+                System.out.println("Client logged in successfully!");
                 MessageSender.lastMessageClientSocket = this.socket;
                 // Read message thread
                 Thread readMessage = new Thread(() -> {

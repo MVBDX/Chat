@@ -1,4 +1,4 @@
-package ir.mctab.hw7.chat;
+package ir.mvbdx.chat;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,12 +16,9 @@ public class MessageSender extends Thread {
     @Override
     public void run() {
         Scanner scanner = new Scanner(System.in);
-        PrintWriter output;
         while (true) {
             try {
-                String msg = scanner.nextLine();
-                output = new PrintWriter(lastMessageClientSocket.getOutputStream(), true);
-                output.println(msg);
+                new PrintWriter(lastMessageClientSocket.getOutputStream(), true).println(scanner.nextLine());
             } catch (IOException e) {
                 e.printStackTrace();
             }

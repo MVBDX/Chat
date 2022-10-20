@@ -1,10 +1,10 @@
-package ir.mctab.hw7.chat;
+package ir.mvbdx.chat;
 
 import java.util.Objects;
 
 public class UserAccount {
-    private String username;
-    private String password;
+    private final String username;
+    private final String password;
 
     public UserAccount(String username, String password) {
         this.username = username;
